@@ -15,6 +15,7 @@ import {
   NumberInputStepper,
   Stack,
   Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import NextLink from "next/link";
@@ -31,16 +32,38 @@ const Home: NextPage = () => {
     specialCharacters: true,
   });
 
+  async function copyPasswordToClipboard() {
+    if ("clipboard" in navigator) {
+      await navigator.clipboard.writeText(password);
+    }
+  }
+
   return (
     <Center bg="gray.100" h="100vh" w="full" flexDirection="column">
       <Box p={8} bg="gray.50" rounded={4} shadow="md">
         <Heading textAlign="center">Password Generator</Heading>
 
-        <Center bg="gray.600" rounded="md" px={2} h="10" my={6}>
-          <Text color="gray.50" fontWeight="bold" fontSize="xl">
-            {password}
-          </Text>
-        </Center>
+        <Tooltip
+          hasArrow
+          label="Copy password to clipboard"
+          bg="gray.300"
+          color="black"
+        >
+          <Center
+            bg="gray.600"
+            rounded="md"
+            px={2}
+            h="10"
+            my={6}
+            cursor="pointer"
+            onClick={copyPasswordToClipboard}
+          >
+            <Text color="gray.50" fontWeight="bold" fontSize="xl">
+              {password}
+            </Text>
+          </Center>
+        </Tooltip>
+
         <HStack gap={4}>
           <Stack gap={3}>
             <FormControl>

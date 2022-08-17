@@ -120,7 +120,10 @@ const Home: NextPage = () => {
         </Text>
         <Text>
           Source code on{" "}
-          <NextLink href="https://github.com" passHref>
+          <NextLink
+            href="https://github.com/dsoaress/password-generator"
+            passHref
+          >
             <Link>Github</Link>
           </NextLink>
         </Text>
